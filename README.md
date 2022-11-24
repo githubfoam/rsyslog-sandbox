@@ -1,0 +1,2 @@
+# rsyslog-sandbox
+rsyslog vagrant 
