@@ -379,48 +379,4 @@ Vagrant.configure("2") do |config|
 
 
 
-        config.vm.define "vg-syslogng-01" do |kalicluster|
-          # https://app.vagrantup.com/debian/boxes/bullseye64
-          # kalicluster.vm.box = "debian/bullseye64" #debian 11
-          # https://github.com/chef/bento/tree/main/packer_templates/debian
-          kalicluster.vm.box = "bento/debian-10.11" #debian 10
-          kalicluster.vm.hostname = "vg-syslogng-01"
-          # kalicluster.vm.network "public_network"
-          kalicluster.vm.network "private_network", ip: "192.168.50.8"
-          # kalicluster.vm.network "forwarded_port", guest: 80, host: 81
-          #Disabling the default /vagrant share can be done as follows:
-          # kalicluster.vm.synced_folder ".", "/vagrant", disabled: true
-          kalicluster.vm.provider "virtualbox" do |vb|
-              vb.name = "vbox-syslogng-01"
-              vb.memory = "768"
-              vb.gui = false
-          end
-          # kalicluster.vm.provision "shell", inline: $debian_bullseye_docker_script          
-          kalicluster.vm.provision "shell", inline: $syslogng_01_debian_script
-
-
-        end
-
-        config.vm.define "vg-syslogng-02" do |kalicluster|
-          # https://app.vagrantup.com/debian/boxes/bullseye64
-          # kalicluster.vm.box = "debian/bullseye64" #debian 11
-          # https://github.com/chef/bento/tree/main/packer_templates/debian
-          kalicluster.vm.box = "bento/debian-10.11" #debian 10
-          kalicluster.vm.hostname = "vg-syslogng-02"
-          # kalicluster.vm.network "public_network"
-          kalicluster.vm.network "private_network", ip: "192.168.50.9"
-          # kalicluster.vm.network "forwarded_port", guest: 80, host: 81
-          #Disabling the default /vagrant share can be done as follows:
-          # kalicluster.vm.synced_folder ".", "/vagrant", disabled: true
-          kalicluster.vm.provider "virtualbox" do |vb|
-              vb.name = "vbox-syslogng-02"
-              vb.memory = "768"
-              vb.gui = false
-          end
-          # kalicluster.vm.provision "shell", inline: $debian_bullseye_docker_script          
-          kalicluster.vm.provision "shell", inline: $syslogng_02_debian_script
-
-
-        end
-
 end
